@@ -1,7 +1,6 @@
 # Global vs. Local Advice in Human-AI interaction
 
 A code and data repository accompanying Szőcs, O., Zhou, H., & Wu, C. M. (2025). *The Forest for the Trees: Global vs. Local Advice in Human-AI Interaction*.
-
 <!-- >TODO: link paper -->
 
 ## Table of contents
@@ -32,12 +31,10 @@ This repository contains everything you need to reproduce our study on global (h
 
 ### Installation
 
-<!-- >TODO: correct link -->
 ```bash
-   git clone https://github.com/yourorg/global-vs-local-advice.git
-   cd global-vs-local-advice
+   git clone https://github.com/orsiszocs/global-vs-local-ai-advice.git
+   cd global-vs-local-ai-advice
 ```
-
 
 [Experiment code](#experiment-code) and [Analysis code](#analysis-code) have their own setup steps below. The former refers to the contents of the `experiment/` folder, while the latter to the contents of the `analysis/` folder.
 
@@ -211,5 +208,4 @@ The scripts and notebooks under `analysis/results/` load experimental data, flag
 
 ## Questions and issues
 
-If anything is unclear or you run into trouble, please contact ... at ...
-<!-- >TODO: add contact -->
+If anything is unclear or you run into trouble, please contact Orsolya Szőcs at orsoszocs@gmail.com.
