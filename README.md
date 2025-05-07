@@ -42,7 +42,7 @@ This repository contains everything you need to reproduce our study on global (h
 
 The anonymised dataset is stored as an array of participant objects in `analysis/data/ColourCombo_101_flagged.json`. Each object has this general structure:
 
-```json
+```js
 {
     "id": "51>56",
     "workerID": "anon",
