@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src=logic/math.js></script>
+  <meta charset="UTF-8">
+  <link rel="icon" href="square-icon-96.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+
+  <title>Colour Combo Game</title>
+</head>
+
+<body>
+
+  <div id="taskPage" style="display:none">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <div id="instructionsDiv1">
+            <h3 class="header">Instructions</h3>
+          </div>
+          <div id="recommendationDiv" style="display: none;">
+            <h3 class="header">The AI assistant's suggestion</h3>
+            <div id="recommendedSwitches">
+            </div>
+            <br>
+          </div>
+          <div id="switchesDiv">
+            <h3 class="header" id="selectSwitchHeader" style="display: none;">Your colour combo</h3>
+            <div id="switches">
+
+            </div>
+            <div style="display: flex;">
+              <button class="taskButton" id="rewardButton" style="display: none;">Select this combo</button>
+              <p id="rewardValue" style="display: none;"></p>
+            </div>
+            <div id="scoreInformationDiv" style="display: none;">
+              <br>
+              <p id="scoreInformation"></p>
+              <br>
+            </div>
+            <div id="aiUsefulQuestion" style="max-width: 40em; display: none;">
+              <p class="instructionsComprehensionText">Mark your agreement with the statement:<br><b>The AI assistant
+                  was
+                  useful in this round.</b>
+              </p>
+              <div>
+                <input type="radio" id="usefulRound1" name="usefulRound" value="1">
+                <label for="usefulRound1" class="instructionsComprehensionText">Strongly disagree</label>
+                <br>
+                <input type="radio" id="usefulRound2" name="usefulRound" value="2">
+                <label for="usefulRound2" class="instructionsComprehensionText">Disagree</label>
+                <br>
+                <input type="radio" id="usefulRound3" name="usefulRound" value="3">
+                <label for="usefulRound3" class="instructionsComprehensionText">Somewhat disagree</label>
+                <br>
+                <input type="radio" id="usefulRound4" name="usefulRound" value="4">
+                <label for="usefulRound4" class="instructionsComprehensionText">Neutral</label>
+                <br>
+                <input type="radio" id="usefulRound5" name="usefulRound" value="5">
+                <label for="usefulRound5" class="instructionsComprehensionText">Somewhat agree</label>
+                <br>
+                <input type="radio" id="usefulRound6" name="usefulRound" value="6">
+                <label for="usefulRound6" class="instructionsComprehensionText">Agree</label>
+                <br>
+                <input type="radio" id="usefulRound7" name="usefulRound" value="7">
+                <label for="usefulRound7" class="instructionsComprehensionText">Strongly agree</label>
+                <br>
+              </div>
+              <br>
+              <p class="instructionsComprehensionText" id="aiUsefulFeedback" style="display: none;">Before moving on,
+                mark your agreement with the statement above.<br><br></p>
+            </div>
+            <button class="moveOnButton" id="moveOnFromMinigameButton" style="display: none;"> </button>
+          </div>
+          <div id="instructionsDiv2">
+            <p id="instructionsText" class="instructionsComprehensionText"></p>
+            <br>
+            <button class="moveOnButton" id="continueInstructions1Button">Continue</button>
+            <button class="moveOnButton" id="continueInstructions2Button" style="display: none;">Continue</button>
+            <br>
+            <button class="moveOnButton" id="goBackInstructions2Button" style="display: none;">Go back</button>
+            <button class="moveOnButton" id="goBackInstructions3Button" style="display: none;">Go back</button>
+            <br>
+            <button class="moveOnButton" id="moveToComprehensionButton" style="display: none;">Go to the quiz</button>
+          </div>
+        </div>
+      </div>
+      <div class="columnTwo">
+        <div style="display: block;" id="historyDiv">
+          <h3 id="selectionsHeader" class="header" style="display: none;">Your previous selections</h3>
+          <div id="earlierSelections">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="comprehensionPage" style="display:none">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <h3 class="header">Comprehension quiz</h3>
+          <br>
+          <p class="instructionsComprehensionText">What is your goal in a round?</p>
+          <input type="radio" id="goal1" name="goal" value="goal1">
+          <label for="goal1" class="instructionsComprehensionText">To find the most valuable colour combo</label><br>
+          <input type="radio" id="goal2" name="goal" value="goal2">
+          <label for="goal2" class="instructionsComprehensionText">To receive as many points as possible</label><br>
+          <input type="radio" id="goal3" name="goal" value="goal3">
+          <label for="goal3" class="instructionsComprehensionText">To select colour combos that have not been
+            selected before</label><br>
+          <br>
+          <p class="instructionsComprehensionText">Which one is true in every round?</p>
+          <input type="radio" id="common1" name="common" value="common1">
+          <label for="common1" class="instructionsComprehensionText">Colour combos produce the same amount of points across rounds</label><br>
+          <input type="radio" id="common2" name="common" value="common2">
+          <label for="common2" class="instructionsComprehensionText">The AI assistant will be available</label><br>
+          <input type="radio" id="common3" name="common" value="common3">
+          <label for="common3" class="instructionsComprehensionText">Colour combos worth less than 100 points are worse
+            than average</label><br>
+          <br>
+          <p class="instructionsComprehensionText">What makes a colour combo valuable?</p>
+          <input type="radio" id="reward1" name="reward" value="reward1">
+          <label for="reward1" class="instructionsComprehensionText">The number of repeating colours within the colour
+            combo</label><br>
+          <input type="radio" id="reward2" name="reward" value="reward2">
+          <label for="reward2" class="instructionsComprehensionText">The specific colours of the individual squares and rectangles</label><br>
+          <input type="radio" id="reward3" name="reward" value="reward3">
+          <label for="reward3" class="instructionsComprehensionText">The aesthetic value of the colour
+            combinations</label><br>
+          <br>
+          <button class="moveOnButton" id="checkComprehensionButton">Check your answers</button>
+          <br>
+          <p class="instructionsComprehensionText" id="comprehensionFeedback"></p>
+          <br>
+          <button class="moveOnButton" id="startMinigamesButton" style="display: none;"></button>
+          <button class="moveOnButton" id="goToInstructionsButton">Go back to the instructions</button>
+        </div>
+      </div>
+      <div class="columnTwo">
+        <div style="display: block;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="aiInstructionsPage" style="display:none">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <h3 class="header">The AI assistant</h3>
+          <div id="possibleSuggestions">
+          </div>
+          <br>
+          <p id="instructionsTextAi" class="instructionsComprehensionText"></p>
+          <br>
+          <h3 class="header">Comprehension quiz</h3>
+          <br>
+          <p class="instructionsComprehensionText">Does the AI assistant tell you exactly which colour combo to select?
+          </p>
+          <input type="radio" id="exactly1" name="exactly" value="exactly1">
+          <label for="exactly1" class="instructionsComprehensionText">Yes</label><br>
+          <input type="radio" id="exactly2" name="exactly" value="exactly2">
+          <label for="exactly2" class="instructionsComprehensionText">No</label><br>
+          <br>
+          <p class="instructionsComprehensionText">When will the AI assistant give better suggestions?</p>
+          <input type="radio" id="suggestion3" name="suggestion" value="suggestion3">
+          <label for="suggestion3" class="instructionsComprehensionText">When it observes the rewards for different
+            colour combos</label><br>
+          <input type="radio" id="suggestion1" name="suggestion" value="suggestion1">
+          <label for="suggestion1" class="instructionsComprehensionText">It always gives good suggestions</label><br>
+          <input type="radio" id="suggestion2" name="suggestion" value="suggestion2">
+          <label for="suggestion2" class="instructionsComprehensionText">When the same colour combo gets selected
+            multiple times</label><br>
+          <br>
+          <button class="moveOnButton" id="checkComprehensionAiButton">Check your answers</button>
+          <br>
+          <p class="instructionsComprehensionText" id="comprehensionAiFeedback"></p>
+          <br>
+          <button class="moveOnButton" id="startAiMinigamesButton" style="display: none;"></button>
+        </div>
+      </div>
+      <div class="columnTwo">
+        <div style="display: block;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="finalQuizPage" style="display:none;">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <h3 class="header">Final quiz</h3> <br>
+          <p class="instructionsComprehensionText">You have finished all the rounds! As a final step of this
+            experiment, please answer the questions below.</p><br>
+          <p class="instructionsComprehensionText">Please check that your <b>Prolific ID</b> is correct. If not entered
+            correctly, you may not be able to receive your bonus.</p><br>
+          <p class="finalQuizText"><b>Your Prolific ID</b></p> <input type="text" id="prolificIdInput"
+            class="finalQuizText"><br><br>
+          <p class="finalQuizText"><b>How old are you?</b></p> <input id="ageInput" type="number" name="age" min="18"
+            max="99" class="finalQuizText"><br>
+          <p class="instructionsComprehensionText"><b>What is your gender?</b></p>
+          <input id="gender1" type="radio" name="gender" value="0">
+          <label for="gender1" class="finalQuizText">Female</label><br>
+          <input id="gender2" type="radio" name="gender" value="1">
+          <label for="gender2" class="finalQuizText">Male</label><br>
+          <input id="gender3" type="radio" name="gender" value="2">
+          <label for="gender3" class="finalQuizText">Other</label><br>
+          <br>
+
+          <p class="instructionsComprehensionText"><b>Mark your agreement with the statement: The AI assistant was
+              useful.</b>
+          </p>
+          <!-- likert scale questions -->
+          <div class="likert">
+            <div class="likertGroup">
+              <input type="radio" id="useful1" name="useful" value="1">
+              <label for="useful1" class="finalQuizText">Strongly disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful2" name="useful" value="2">
+              <label for="useful2" class="finalQuizText">Disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful3" name="useful" value="3">
+              <label for="useful3" class="finalQuizText">Somewhat disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful4" name="useful" value="4">
+              <label for="useful4" class="finalQuizText">Neutral</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful5" name="useful" value="5">
+              <label for="useful5" class="finalQuizText">Somewhat agree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful6" name="useful" value="6">
+              <label for="useful6" class="finalQuizText">Agree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="useful7" name="useful" value="7">
+              <label for="useful7" class="finalQuizText">Strongly agree</label>
+            </div>
+          </div>
+          <br>
+          <br>
+          <p class="instructionsComprehensionText"><b>Mark your agreement with the statement: I followed the AI's
+              suggestions.</b> </p>
+          <div class="likert">
+            <div class="likertGroup">
+              <input type="radio" id="followed1" name="followed" value="1">
+              <label for="followed1" class="finalQuizText">Strongly disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed2" name="followed" value="2">
+              <label for="followed2" class="finalQuizText">Disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed3" name="followed" value="3">
+              <label for="followed3" class="finalQuizText">Somewhat disagree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed4" name="followed" value="4">
+              <label for="followed4" class="finalQuizText">Neutral</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed5" name="followed" value="5">
+              <label for="followed5" class="finalQuizText">Somewhat agree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed6" name="followed" value="6">
+              <label for="followed6" class="finalQuizText">Agree</label>
+            </div>
+            <div class="likertGroup">
+              <input type="radio" id="followed7" name="followed" value="7">
+              <label for="followed7" class="finalQuizText">Strongly agree</label>
+            </div>
+          </div>
+          <br><br>
+          <p class="instructionsComprehensionText"><b>What strategies did you use when completing the rounds on your
+              own?</b> </p>
+          <textarea class="strategyTextArea" id="strategyOnOwn"></textarea><br><br>
+          <p class="instructionsComprehensionText"><b>What strategies did you use when completing the rounds with the
+              help of the AI?</b> </p>
+          <textarea class="strategyTextArea" id="strategyWithAi"></textarea><br><br>
+          <button class="moveOnButton" id="goToEndPageButton">Submit your answers</button>
+          <br>
+          <p class="instructionsComprehensionText" id="connectionProblemText" style="display:none;">It seems like you
+            are having connection issues. Please try
+            submitting your answers again.</p>
+          <p class="instructionsComprehensionText" id="missingAnswersText" style="display:none;"></p>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id="endPage" style="display:none">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <h3 class="header">The end</h3> <br>
+          <p class="instructionsComprehensionText">Thank you for participating in this experiment!</p><br>
+          <p class="instructionsComprehensionText" id="bonusPaymentText"></p><br><br>
+          <p class="instructionsComprehensionText">To earn your base fee of £3.60, please click ... here.<br>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="consentPage" style="display:block;">
+    <div class="childrenInRow">
+      <div class="columnOne">
+        <div style="display: block;">
+          <h3 class="header">Consent form for participation in this online experiment</h3> <br>
+          <h4 class="headerSmall">Study information</h4>
+          <p class="consentText">Thank you for your interest in our study. Please read the following information
+            carefully. Your participation
+            in this research is voluntary. It is your choice whether to participate or not. Please do not hesitate to
+            write to us at ... if you have any further
+            questions regarding the study.</p> <br>
+          <h4 class="headerSmall">1. Purpose</h4>
+          <p class="consentText">In this study we investigate human-AI interaction.</p> <br>
+          <h4 class="headerSmall">2. Procedure</h4>
+          <p class="consentText">This study will take about 25 minutes. It will consist of the following steps:</p>
+          <ul>
+            <li>
+              <p class="consentText"> You will be introduced to a game, and you will get
+                to try it out.
+              </p>
+            </li>
+            <li>
+              <p class="consentText"> We will check whether you have correctly understood the game by asking you some
+                questions. </p>
+            </li>
+            <li>
+              <p class="consentText"> You will play 3 rounds of this game. </p>
+            </li>
+            <li>
+              <p class="consentText"> An AI assistant will be introduced to you. We will check whether you understand
+                what the AI
+                assistant does by asking you some questions. </p>
+            </li>
+            <li>
+              <p class="consentText"> You will play 6 more rounds of this game with the AI assistant helping
+                you.
+              </p>
+            </li>
+            <li>
+              <p class="consentText"> You will play 3 more rounds on your own, without the AI.
+              </p>
+            </li>
+            <li>
+              <p class="consentText"> You will complete a short questionnaire. </p>
+            </li>
+          </ul class="headerSmall"> <br>
+          <h4 class="headerSmall">3. Compensation</h4>
+          <p class="consentText">You will receive £3.60 for your participation. You will also receive a <b>bonus payment
+              of up
+              to £3.60</b> based on your performance in
+            the experiment. </p> <br>
+          <h4 class="headerSmall">4. Data protection</h4>
+          <p class="consentText">Once we have awarded you your bonus payment, your Prolific ID will be deleted from
+            the
+            study data.
+            The experiment data will be stored under a randomly assigned participant
+            number on a server at the University of Tübingen. This means that it will become impossible to link the
+            study
+            data to you. All data collected during this study will be treated confidentially and all individuals with
+            access to your personal data are obliged to maintain data secrecy. We are not responsible for the handling
+            of
+            your personal data through the Prolific platform.<br>
+            The study data may also be made publicly accessible via research databases or scientific publications
+            (typically via the internet). This makes it possible for other researchers to check or replicate the
+            results
+            and enhances the quality of scientific research. The study data may also be used for new research
+            questions
+            going beyond the purposes of this particular study. The data is stored anonymously, treated
+            confidentially,
+            and used only for scientific purposes. You are free to withdraw, in which case the recorded data will not
+            be
+            used
+            (see point 6).</p> <br>
+          <h4 class="headerSmall">5. Voluntary participation</h4>
+          <p class="consentText">Your participation in this research is entirely voluntary. There will be no
+            repercussions when canceling your
+            participation.</p><br>
+          <h4 class="headerSmall">6. Right to refuse or withdraw</h4>
+          <p class="consentText">You do not have to take part in this study if you do not wish to do so. You are free
+            to withdraw your
+            consent
+            and do not need to provide a reason for your withdrawal. Participants who drop out of the study for any
+            reason
+            (e.g., technical issues) are eligible for full or partial compensation. Please contact
+            ... and include a screenshot of the experiment website
+            if possible. If you
+            withdraw from the study before data collection is completed, your data will not be used. If you withdraw
+            from
+            the study after completing the study, but before bonus payments have been processed, you can request the
+            deletion of your data. After the processing of bonus payments, your Prolific ID will be removed from the
+            study
+            data and it will be fully anonymized, making it not possible to link you with your data.</p> <br>
+          <h4 class="headerSmall">7. Risks</h4>
+          <p class="consentText">Your participation does not involve any physical or emotional risk to you. You are
+            free to withdraw at any
+            time.</p><br>
+          <h4 class="headerSmall">8. Insurance coverage</h4>
+          <p class="consentText">Not necessary for participating in this study.</p><br>
+          <h4 class="headerSmall">9. Responsible contact</h4>
+          <p class="consentText">If you have questions or if there are any problems, please contact
+            ... You can
+            also use this email to request the withdrawal of your data.</p><br>
+          <h4 class="headerSmall">Consent</h4>
+          <p class="consentText">By clicking on the button below, you agree to the following:</p>
+          <ul>
+            <li>
+              <p class="consentText"><b>I have read and understood the conditions outlined above. I consent to
+                  participate in the study and
+                  agree to the collection, storage, and use of my data as described above.</b></p>
+            </li>
+          </ul> <br>
+
+          <button class="moveOnButton" id="beginExperimentButton">Agree</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <script type="module" src="experiment.js"></script>
+</body>
+
+</html>

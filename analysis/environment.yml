@@ -1,0 +1,19 @@
+name: global-vs-local-analysis
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy
+  - jupyterlab
+  - tqdm
+  - matplotlib
+  - networkx
+  - plotly
+  - python-kaleido
+  - pandas
+  - statsmodels
+  - pip
+  - pip:
+    - -e .
+    - kaleido
+    - ipykernel

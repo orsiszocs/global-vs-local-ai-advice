@@ -1,0 +1,248 @@
+:root {
+    --standardMargin: 0.4em;
+    --switchMargin: 0.4em;
+    --fontColour: #000000;
+    --buttonInsideColour: #d9d9d9;
+    --disabledButtonColour: #a9a9a9;
+}
+
+.header {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: bold;
+    color: var(--fontColour);
+    font-size: 1.2em;
+}
+
+.headerSmall {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    color: var(--fontColour);
+    font-size: 1em;
+}
+
+#scoreInformation {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: normal;
+    color: var(--fontColour);
+    font-size: 1em;
+    align-self: center;
+    line-height: 2;
+    max-width: 29em;
+}
+
+.instructionsComprehensionText {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: normal;
+    color: var(--fontColour);
+    font-size: 1em;
+    align-self: center;
+    line-height: 2;
+    max-width: 40em;
+    min-width: 25em;
+    text-align: justify;
+}
+
+.finalQuizText {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: normal;
+    color: var(--fontColour);
+    font-size: 1em;
+    align-self: center;
+}
+
+.strategyTextArea {
+    width: 40em;
+    height: 8em;
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: normal;
+    color: var(--fontColour);
+    font-size: 1em;
+    align-self: center;
+}
+
+.consentText {
+    margin: var(--standardMargin);
+    font-family: Verdana;
+    font-weight: lighter;
+    color: var(--fontColour);
+    font-size: 0.9em;
+    align-self: center;
+    line-height: 2;
+    text-align: justify;
+}
+
+input[name="goal"], input[name="reward"], input[name="common"], input[name="suggestion"], input[name="exactly"], input[name="age"], input[name="gender"], 
+input[name="useful"], input[name="followed"], input[name="usefulRound"] {
+    accent-color: var(--fontColour);
+}
+
+.taskButton {
+    margin: var(--standardMargin);
+    background-color: var(--buttonInsideColour);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1em;
+    font-weight: bold;
+    text-align: center;
+    font-family: Verdana;
+    color: var(--fontColour);
+
+    &:disabled {
+        color: var(--disabledButtonColour);
+        cursor: default;
+    }
+}
+
+.moveOnButton {
+    margin: var(--standardMargin);
+    background-color: var(--buttonInsideColour);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1em;
+
+    font-weight: bold;
+    text-align: center;
+    font-family: Verdana;
+    color: var(--fontColour);
+}
+
+#rewardValue {
+    margin: var(--standardMargin);
+    color: var(--fontColour);
+    font-family: Verdana;
+    font-size: 1em;
+    align-self: center;
+    margin-left: 5em;
+}
+
+#switches, #recommendedSwitches, #possibleSuggestions {
+    display: flex;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+#earlierSelections {
+    display: block;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.childrenInRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.columnOne {
+    flex: 60%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.columnTwo {
+    flex: 40%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.switchBlock {
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: var(--disabledButtonColour);
+    padding: 0.2em;
+    margin: var(--standardMargin);
+    display: flex;
+}
+
+.blockRow {
+    display: flex;
+    &:hover {
+        cursor: copy;
+    }
+}
+
+.trialReward {
+    font-family: Verdana;
+    margin: var(--standardMargin);
+    width: 2.2em;
+    font-weight: bold;
+    text-align: right;
+    font-size: 0.9em;
+    align-self: center;
+}
+
+.trialBlock {
+    border: none;
+    padding: 0.2em;
+    display: flex;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.trialSwitch {
+    width: 1.7em;
+    height: 1.7em;
+    margin: 0.3em;
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.switch {
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    position: relative;
+    display: inline-block;
+    width: 2.2em;
+    height: 2.2em;
+    cursor: pointer;
+    background-color: var(--disabledButtonColour);
+    margin: var(--switchMargin);
+
+    &:disabled {
+        cursor: default;
+    }
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+ul {
+    margin: 0;
+    list-style-type: square;
+}
+
+.likertGroup {
+    display: inline-block;
+    text-align: center;
+}
+
+.likertGroup label {
+    display: block;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
